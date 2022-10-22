@@ -1,5 +1,7 @@
 import streamlit as st
 import numpy as np
+import os
+os.system("pip install matplotlib")
 import matplotlib.pyplot as plt
 from PIL import Image
 import torch
