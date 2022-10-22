@@ -5,6 +5,18 @@ os.system("pip install matplotlib")
 import matplotlib.pyplot as plt
 from PIL import Image
 import torch
+import torchvision.models as models
+import torchvision.transforms as transforms
+
+
+#put in saliencyfunction
+normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406],
+                                     std=[0.329, 0.324, 0.325])
+#inverse transform to get normalize image back to original form for visualization
+inv_normalize = transforms.Normalize(
+    mean=[-0.485/0.229, -0.456/0.224, -0.406/0.255],
+    std=[1/0.229, 1/0.224, 1/0.255]
+)
 
 def saliency(img, model):
     #we don't need gradients w.r.t. weights for a trained model
@@ -66,14 +78,7 @@ model = models.resnet18(num_classes=2)
 model.load_state_dict(torch.load(MODEL_SAVE_PATH))
 salient_image = torch.from_numpy(np.asarray(Image.open(uploaded_file)).T)
 
-#put in saliencyfunction
-normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406],
-                                     std=[0.329, 0.324, 0.325])
-#inverse transform to get normalize image back to original form for visualization
-inv_normalize = transforms.Normalize(
-    mean=[-0.485/0.229, -0.456/0.224, -0.406/0.255],
-    std=[1/0.229, 1/0.224, 1/0.255]
-)
+
 
 saliency(img, model)
 
