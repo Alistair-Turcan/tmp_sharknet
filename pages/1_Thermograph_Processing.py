@@ -76,9 +76,10 @@ st.image(
 )
 
 #process the image thru the stuff
-MODEL_SAVE_PATH = "sharknet.pt"
+#device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+MODEL_SAVE_PATH = 'sharknet.pt'
 model = models.resnet18(num_classes=2)
-model.load_state_dict(torch.load(MODEL_SAVE_PATH))
+model.load_state_dict(torch.load(MODEL_SAVE_PATH, map_location=torch.device('cpu')))
 salient_image = torch.from_numpy(np.asarray(Image.open(uploaded_file)).T)
 
 
