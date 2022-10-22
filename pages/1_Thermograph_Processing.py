@@ -87,7 +87,7 @@ img = torch.from_numpy(np.asarray(Image.open(uploaded_file)).T)
 
 prob_cancer = saliency(img, model)
 
-salient_image = "output_thermo.png"
+salient_image = 'output_thermo.jpg'
 
 probability = 0
 st.write("Probability of tumor presence: " + str(prob_cancer * 100) + "%.")
