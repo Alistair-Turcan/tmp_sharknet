@@ -73,7 +73,7 @@ st.image(
 )
 
 #process the image thru the stuff
-MODEL_SAVE_PATH = "../sharknet.pt"
+MODEL_SAVE_PATH = "sharknet.pt"
 model = models.resnet18(num_classes=2)
 model.load_state_dict(torch.load(MODEL_SAVE_PATH))
 salient_image = torch.from_numpy(np.asarray(Image.open(uploaded_file)).T)
