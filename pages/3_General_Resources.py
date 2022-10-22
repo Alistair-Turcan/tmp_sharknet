@@ -1,6 +1,5 @@
 import streamlit as st
 st.set_page_config(page_title="General Resources")
-st.sidebar.header("General Resources")
 st.title("General Resources")
 
 st.write("Resources: https://www.nationalbreastcancer.org/about-breast-cancer/early-detection/breast-cancer-resources")
