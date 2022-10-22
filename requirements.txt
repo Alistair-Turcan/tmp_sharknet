@@ -1,3 +1,5 @@
 matplotlib
 torch
 torchvision
+torchvision.transforms
+torchvision.models
