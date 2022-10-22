@@ -39,7 +39,9 @@ def saliency(img, model):
     input.requires_grad = True
     #forward pass to calculate predictions
     preds = model(input)
-    print(preds)
+    #print(preds)
+    prob = nnf.softmax(preds, dim=1)
+    prob_cancer = prob.detach().numpy()[0][1]
     score, indices = torch.max(preds, 1)
     #backward pass to get gradients of score predicted class w.r.t. input image
     score.backward()
@@ -62,6 +64,7 @@ def saliency(img, model):
     plt.xticks([])
     plt.yticks([])
     plt.savefig('output_thermo.jpg',bbox_inches='tight')
+    return prob_cancer
     
 st.set_page_config(page_title="Thermograph Processing")
 #st.sidebar.header("Thermograph Processing")
@@ -80,12 +83,12 @@ salient_image = torch.from_numpy(np.asarray(Image.open(uploaded_file)).T)
 
 
 
-saliency(img, model)
+prob_cancer = saliency(img, model)
 
 salient_image = "output_thermo.png"
 
 probability = 0
-st.write("Probability of tumor presence: " + str(probability) + "%.")
+st.write("Probability of tumor presence: " + str(prob_cancer * 100) + "%.")
 st.write("Processed Image")
 st.write("Red dots indicate points of interest.")
 st.image(
