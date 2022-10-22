@@ -26,7 +26,7 @@ def saliency(img, model):
     #set model in eval mode
     model.eval()
     #transoform input PIL image to torch.Tensor and normalize
-    transform = torchvision.transforms.Compose([transforms.ToPILImage(),
+    transform = transforms.Compose([transforms.ToPILImage(),
                                                        transforms.Resize((128, 128)),
                                                        transforms.ToTensor(),
                                                 normalize])
