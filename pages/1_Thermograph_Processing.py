@@ -90,9 +90,9 @@ prob_cancer = saliency(img, model)
 salient_image = 'output_thermo.jpg'
 
 probability = 0
+
+st.write("# Results")
 st.write("Probability of tumor presence: " + str(prob_cancer * 100) + "%.")
-st.write("Processed Image")
-st.write("Red dots indicate points of interest.")
 st.image(
     salient_image, caption=f"Processed image", use_column_width=True,
 )
