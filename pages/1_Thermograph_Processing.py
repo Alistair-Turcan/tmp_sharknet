@@ -7,6 +7,7 @@ from PIL import Image
 import torch
 import torchvision.models as models
 import torchvision.transforms as transforms
+import torch.nn.functional as nnf
 
 
 #put in saliencyfunction
